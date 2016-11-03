@@ -5,6 +5,7 @@ DCMS provides user-friendly and comprehensive functionalities, covering treatmen
 
 #### Users of the DCMS:
 * Administrator.
+
 #### User role: 
 o	Add a new doctor.
 
