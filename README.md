@@ -17,7 +17,7 @@ o	Delete a receptionist.
 
 o	Get reports.
 
-•	Doctor.
+* Doctor.
 
 #### User role: 
 	* 	Add a medical examination.
@@ -50,7 +50,6 @@ o	Delete an appointment.
 
 #### Tools:
 Database: SQL Server.
-
 LINQ: .NET Language-Integrated Query
 C#
 
