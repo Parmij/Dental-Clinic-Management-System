@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=DB;Integrated Security=True" SettingsObjectName="SWE2_Project1.Properties.Settings" SettingsPropertyName="DBConnectionString2" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Appointment" Member="Appointments">
+    <Type Name="Appointment">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Patient_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Receptionist_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TimeFrom" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="TimeTo" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Day" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Doctor_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Patient_Appointment" Member="Patient" ThisKey="Patient_ID" OtherKey="ID" Type="Patient" IsForeignKey="true" />
+      <Association Name="Receptionist_Appointment" Member="Receptionist" ThisKey="Receptionist_ID" OtherKey="ID" Type="Receptionist" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bill" Member="Bills">
+    <Type Name="Bill">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Doctor_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Patient_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Bill_Payment" Member="Payments" ThisKey="ID" OtherKey="Bill_ID" Type="Payment" />
+      <Association Name="Doctor_Bill" Member="Doctor" ThisKey="Doctor_ID" OtherKey="ID" Type="Doctor" IsForeignKey="true" />
+      <Association Name="Patient_Bill" Member="Patient" ThisKey="Patient_ID" OtherKey="ID" Type="Patient" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Doctor" Member="Doctors">
+    <Type Name="Doctor">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Doctor_Bill" Member="Bills" ThisKey="ID" OtherKey="Doctor_ID" Type="Bill" />
+      <Association Name="Doctor_Treatment" Member="Treatments" ThisKey="ID" OtherKey="Doctor_ID" Type="Treatment" />
+      <Association Name="Doctor_Warehouse" Member="Warehouses" ThisKey="ID" OtherKey="Doctor_ID" Type="Warehouse" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Patient" Member="Patients">
+    <Type Name="Patient">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Birth_Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Phone_No" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Mobile_No" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Street" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Pregnant" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Patient_Appointment" Member="Appointments" ThisKey="ID" OtherKey="Patient_ID" Type="Appointment" />
+      <Association Name="Patient_Bill" Member="Bills" ThisKey="ID" OtherKey="Patient_ID" Type="Bill" />
+      <Association Name="Patient_Treatment" Member="Treatments" ThisKey="ID" OtherKey="Patient_ID" Type="Treatment" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Payment" Member="Payments">
+    <Type Name="Payment">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Value" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Bill_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Bill_Payment" Member="Bill" ThisKey="Bill_ID" OtherKey="ID" Type="Bill" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Receptionist" Member="Receptionists">
+    <Type Name="Receptionist">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Phone_No" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Mobile_No" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Receptionist_Appointment" Member="Appointments" ThisKey="ID" OtherKey="Receptionist_ID" Type="Appointment" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Treatment" Member="Treatments">
+    <Type Name="Treatment">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Patient_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Doctor_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Doctor_Treatment" Member="Doctor" ThisKey="Doctor_ID" OtherKey="ID" Type="Doctor" IsForeignKey="true" />
+      <Association Name="Patient_Treatment" Member="Patient" ThisKey="Patient_ID" OtherKey="ID" Type="Patient" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Warehouse" Member="Warehouses">
+    <Type Name="Warehouse">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Item_Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Item_Quantity" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Doctor_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Doctor_Warehouse" Member="Doctor" ThisKey="Doctor_ID" OtherKey="ID" Type="Doctor" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
