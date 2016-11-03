@@ -7,20 +7,20 @@ DCMS provides user-friendly and comprehensive functionalities, covering treatmen
 * Administrator.
 
 #### User role: 
-o	Add a new doctor.
+	o	Add a new doctor.
 
-o	Add a new receptionist.
+	o	Add a new receptionist.
 
-o	Delete a doctor.
+	o	Delete a doctor.
 
-o	Delete a receptionist.
+	o	Delete a receptionist.
 
-o	Get reports.
+	o	Get reports.
 
 * Doctor.
 
 #### User role: 
-	* 	Add a medical examination.
+	o 	Add a medical examination.
 
 	o	Add a medical detailed plan.
 
@@ -38,20 +38,20 @@ o	Get reports.
 * Receptionist.
 
 #### User role: 
-o	Add new patient information.
+	o	Add new patient information.
 
-o	Add a new appointment.
+	o	Add a new appointment.
 
-o	Update patient information.
+	o	Update patient information.
 
-o	Update an appointment.
+	o	Update an appointment.
 
-o	Delete an appointment.
+	o	Delete an appointment.
 
 #### Tools:
-Database: SQL Server.
-LINQ: .NET Language-Integrated Query
-C#
+	Database: SQL Server.
+	LINQ: .NET Language-Integrated Query
+	C#
 
 
 
